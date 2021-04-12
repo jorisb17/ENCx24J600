@@ -8,6 +8,7 @@
 
 #include <avr/io.h>
 #include <avr/interrupt.h>
+#include "main.h"
 #include "ENCx24J600.h"
 
 // Define UDP datagram fields
@@ -17,7 +18,8 @@ uint8_t *data;
 
 uint8_t PC_IPAddr[] = {192,168,1,10};
 uint8_t PC_MACAddr[] = {0x00,0x23,0x7d,0x00,0x8a,0x08};
-//uint8_t PC_MACAddr[] = {0xff,0xff,0xff,0xff,0xff,0xff};
+	
+	
 uint8_t uC_IPAddr[] = {192,168,1,11};
 
 void Init();
@@ -64,7 +66,7 @@ void SPID_Init()
 	SPID.CTRL= SPI_PRESCALER_DIV4_gc | SPI_ENABLE_bm | SPI_MASTER_bm | SPI_MODE_0_gc;
 }
 
-ISR(PORTC_INT0_vect)
+ISR(PORTD_INT0_vect)
 {
 	ENC_CLREIE();		// disable ENC interrupts (INT line goes inactive)
 
